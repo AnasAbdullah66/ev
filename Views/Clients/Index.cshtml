@@ -1,0 +1,49 @@
+﻿@model IEnumerable<Eight_Evid_01.Models.Client>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+@foreach (var item in Model)
+{
+    <div class="">
+        <div>
+            <div>
+                <img src="@item.Picture" width="40" alt="Alternate Text" />
+                Name: @item.ClientName
+            </div>
+            <div>
+                <a href="@Url.Action("Edit", "Clients",new {id=item.ClientId})" class="btn btn-primary btn-sm">Edit</a>
+                <a href="@Url.Action("Delete", "Clients",new {id=item.ClientId})" class="btn btn-danger btn-sm">Delete</a>
+
+            </div>
+
+            <hr />
+            <div>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Spot Id</th>
+                            <th>Spot Name</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var singleEntry  in item.BookingEntries)
+                        {
+                            <tr>
+                                <td>@singleEntry.SpotId</td>
+                                <td>@singleEntry.Spot.SpotName</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+}
